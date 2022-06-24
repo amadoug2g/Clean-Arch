@@ -2,7 +2,7 @@ plugins {
     id 'java-library'
     id 'kotlin'
 }
-~~
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
