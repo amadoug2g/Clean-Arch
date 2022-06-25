@@ -11,6 +11,7 @@ import com.playgroundagc.cleanarch.R
 import com.playgroundagc.cleanarch.databinding.FragmentNoteBinding
 
 class NoteFragment : Fragment() {
+
     private lateinit var binding : FragmentNoteBinding
 
     override fun onCreateView(

@@ -12,5 +12,5 @@ data class Note (
     val content: String,
     val createTime: Long,
     val updateTime: Long,
-    val id: Long = 0
+    val id: Long = 0L
         )
