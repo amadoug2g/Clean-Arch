@@ -6,7 +6,7 @@ import com.playgroundagc.core.repository.NoteRepository
 /**
  * Created by Amadou on 24/06/2022, 15:21
  *
- * Purpose:
+ * Purpose: Add Note USE CASE
  *
  */
 
