@@ -8,9 +8,9 @@ package com.playgroundagc.core.data
  */
 
 data class Note (
-    val title: String,
-    val content: String,
-    val createTime: Long,
-    val updateTime: Long,
+    var title: String,
+    var content: String,
+    var createTime: Long,
+    var updateTime: Long,
     val id: Long = 0L
         )
