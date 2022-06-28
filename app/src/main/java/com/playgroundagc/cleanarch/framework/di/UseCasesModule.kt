@@ -2,10 +2,7 @@ package com.playgroundagc.cleanarch.framework.di
 
 import com.playgroundagc.cleanarch.framework.UseCases
 import com.playgroundagc.core.repository.NoteRepository
-import com.playgroundagc.core.usecase.AddNote
-import com.playgroundagc.core.usecase.GetAllNotes
-import com.playgroundagc.core.usecase.GetNote
-import com.playgroundagc.core.usecase.RemoveNote
+import com.playgroundagc.core.usecase.*
 import dagger.Module
 import dagger.Provides
 
@@ -20,6 +17,7 @@ class UseCasesModule {
         AddNote(repository),
         GetAllNotes(repository),
         GetNote(repository),
-        RemoveNote(repository)
+        RemoveNote(repository),
+        GetWordCount(),
     )
 }

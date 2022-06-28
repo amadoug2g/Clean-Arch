@@ -14,7 +14,7 @@ class GetWordCount {
 
     private fun getCount(content: String) =
         content
-            .split("", "\n")
+            .split(" ", "\n")
             .filter {
                 it.contains(Regex(".*[a-zA-Z].*"))
             }

@@ -43,10 +43,17 @@
             <TextView
                 android:id="@+id/date"
                 style="@style/Detail"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
+                android:layout_gravity="bottom|start"
                 android:text="@{note.noteUpdatedDate}" />
+
+            <TextView
+                android:id="@+id/wordCount"
+                style="@style/Detail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

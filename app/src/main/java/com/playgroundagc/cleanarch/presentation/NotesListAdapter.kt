@@ -1,5 +1,6 @@
 package com.playgroundagc.cleanarch.presentation
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -42,6 +43,8 @@ class NotesListAdapter(private var notesList: List<Note>, private val action: Li
                 this.note = note
 
                 this.cardView.setOnClickListener { action.onClick(note.id) }
+
+                this.wordCount.text = "Words: ${note.wordCount}"
             }
         }
     }
