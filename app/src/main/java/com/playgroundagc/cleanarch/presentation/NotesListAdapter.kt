@@ -10,9 +10,12 @@ import kotlin.collections.ArrayList
 
 /**
  * Created by Amadou on 27/06/2022, 19:15
+ *
+ * Note Adapter
+ *
  */
 
-class NotesListAdapter(private var notesList: ArrayList<Note>): RecyclerView.Adapter<NotesListAdapter.NoteViewHolder>() {
+class NotesListAdapter(private var notesList: List<Note>): RecyclerView.Adapter<NotesListAdapter.NoteViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val binding = SingleNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NoteViewHolder(binding)
@@ -24,7 +27,7 @@ class NotesListAdapter(private var notesList: ArrayList<Note>): RecyclerView.Ada
 
     override fun getItemCount(): Int = notesList.size
 
-    fun updateDate(newNotesList: ArrayList<Note>) {
+    fun updateNotes(newNotesList: List<Note>) {
         val diffUtil = MyDiffUtil(notesList, newNotesList)
         val diffResult = DiffUtil.calculateDiff(diffUtil)
         notesList = newNotesList
@@ -40,7 +43,7 @@ class NotesListAdapter(private var notesList: ArrayList<Note>): RecyclerView.Ada
     }
 }
 
-class MyDiffUtil(private val oldList: MutableList<Note>, private val newList: MutableList<Note>) :
+class MyDiffUtil(private val oldList: List<Note>, private val newList: List<Note>) :
     DiffUtil.Callback() {
     override fun getOldListSize(): Int = oldList.count()
 

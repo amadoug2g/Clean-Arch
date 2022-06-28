@@ -20,7 +20,7 @@ class NoteFragment : Fragment() {
 
     private lateinit var binding : FragmentNoteBinding
 
-    val viewModel : NoteViewModel by activityViewModels()
+    private val viewModel : NoteViewModel by activityViewModels()
 
     private var currentNote = Note("", "", 0L, 0L)
 

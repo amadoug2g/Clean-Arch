@@ -13,6 +13,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [NoteEntity::class],
+    exportSchema = false,
     version = 1
 )
 abstract class DatabaseService: RoomDatabase() {
