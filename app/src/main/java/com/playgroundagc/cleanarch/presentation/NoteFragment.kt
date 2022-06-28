@@ -1,16 +1,17 @@
 package com.playgroundagc.cleanarch.presentation
 
+import android.app.AlertDialog
 import android.content.Context.INPUT_METHOD_SERVICE
+import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.playgroundagc.cleanarch.R
 import com.playgroundagc.cleanarch.databinding.FragmentNoteBinding
 import com.playgroundagc.cleanarch.framework.NoteViewModel
@@ -31,6 +32,7 @@ class NoteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_note, container, false)
+        setHasOptionsMenu(true)
 
         return binding.root
     }
@@ -55,6 +57,35 @@ class NoteFragment : Fragment() {
         }
 
         observeViewModel()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.note_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.delete_note -> deleteWindow()
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun deleteWindow(): Boolean {
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Delete note")
+            .setMessage("Would you like to delete this note?")
+            .setPositiveButton(R.string.positive_answer) { _: DialogInterface, _: Int ->
+                deleteNote(currentNote)
+            }
+            .setNegativeButton(R.string.negative_answer) { _: DialogInterface, _: Int ->
+            }.show()
+        return true
+    }
+
+    private fun deleteNote(note: Note) {
+        viewModel.deleteNote(note)
+        requireActivity().onBackPressed()
     }
 
     private fun observeViewModel() {

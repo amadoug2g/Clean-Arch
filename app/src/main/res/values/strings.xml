@@ -5,4 +5,7 @@
     <string name="adding_note_fab">Adding note</string>
     <string name="title">Title</string>
     <string name="content">Content</string>
+    <string name="delete_note">Delete note</string>
+    <string name="positive_answer">Yes</string>
+    <string name="negative_answer">Cancel</string>
 </resources>
