@@ -16,7 +16,8 @@ import kotlinx.coroutines.launch
 /**
  * Created by Amadou on 26/06/2022, 01:18
  *
- * Application ViewModel
+ * Note Fragment ViewModel
+ *
  */
 
 class NoteViewModel(application: Application): AndroidViewModel(application) {
