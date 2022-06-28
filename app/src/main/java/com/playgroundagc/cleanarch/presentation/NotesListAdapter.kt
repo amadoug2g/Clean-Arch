@@ -15,7 +15,7 @@ import kotlin.collections.ArrayList
  *
  */
 
-class NotesListAdapter(private var notesList: List<Note>): RecyclerView.Adapter<NotesListAdapter.NoteViewHolder>() {
+class NotesListAdapter(private var notesList: List<Note>, private val action: ListAction): RecyclerView.Adapter<NotesListAdapter.NoteViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val binding = SingleNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NoteViewHolder(binding)
@@ -38,6 +38,8 @@ class NotesListAdapter(private var notesList: List<Note>): RecyclerView.Adapter<
         fun bind(note: Note) {
             with(binding) {
                 this.note = note
+
+                binding.layout.setOnClickListener { action.onClick(note.id) }
             }
         }
     }

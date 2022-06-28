@@ -14,11 +14,11 @@ import com.playgroundagc.cleanarch.R
 import com.playgroundagc.cleanarch.databinding.FragmentListBinding
 import com.playgroundagc.cleanarch.framework.db.ListViewModel
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), ListAction {
 
     private lateinit var binding: FragmentListBinding
 
-    private val adapter = NotesListAdapter(arrayListOf())
+    private val adapter = NotesListAdapter(arrayListOf(), this)
 
     private val viewModel by activityViewModels<ListViewModel>()
 
@@ -45,6 +45,10 @@ class ListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.getNotes()
+    }
+
+    override fun onClick(id: Long) {
+
     }
 
     private fun observeViewModel() {
