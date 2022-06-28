@@ -15,6 +15,7 @@ data class Note(
     var content: String,
     var createTime: Long,
     var updateTime: Long,
+    var wordCount: Int = 0,
     val id: Long = 0L
 ) {
     val noteUpdatedDate: String
