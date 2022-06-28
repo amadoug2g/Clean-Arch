@@ -2,13 +2,13 @@ package com.playgroundagc.cleanarch.presentation
 
 import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.Navigation
 import com.playgroundagc.cleanarch.R
@@ -18,9 +18,11 @@ import com.playgroundagc.core.data.Note
 
 class NoteFragment : Fragment() {
 
-    private lateinit var binding : FragmentNoteBinding
+    private lateinit var binding: FragmentNoteBinding
 
-    private val viewModel : NoteViewModel by activityViewModels()
+    private val viewModel: NoteViewModel by activityViewModels()
+
+    private var noteId = 0L
 
     private var currentNote = Note("", "", 0L, 0L)
 
@@ -36,6 +38,14 @@ class NoteFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        arguments?.let {
+            noteId = NoteFragmentArgs.fromBundle(it).noteId
+        }
+
+        if (noteId != 0L) {
+            viewModel.getNote(noteId)
+        }
+
         binding.saveNoteFAB.setOnClickListener {
             if (checkIfEmpty()) {
                 saveNote(currentNote)
@@ -48,13 +58,19 @@ class NoteFragment : Fragment() {
     }
 
     private fun observeViewModel() {
-        viewModel.saved.observe (this) { value ->
+        viewModel.saved.observe(this) { value ->
             if (value) {
-                Toast.makeText(context, "Done", Toast.LENGTH_SHORT).show()
                 hideKeyboard()
                 Navigation.findNavController(binding.titleView).popBackStack()
             } else {
                 Toast.makeText(context, "An error occurred!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        viewModel.currentNote.observe(this) { note ->
+            note?.let {
+                currentNote = it
+                binding.note = it
             }
         }
     }
@@ -75,7 +91,8 @@ class NoteFragment : Fragment() {
     }
 
     private fun hideKeyboard() {
-        val inputMethodManager = context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            context?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(binding.titleView.windowToken, 0)
     }
 }

@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.playgroundagc.cleanarch.databinding.SingleNoteBinding
 import com.playgroundagc.core.data.Note
-import kotlin.collections.ArrayList
 
 /**
  * Created by Amadou on 27/06/2022, 19:15
@@ -15,7 +14,9 @@ import kotlin.collections.ArrayList
  *
  */
 
-class NotesListAdapter(private var notesList: List<Note>, private val action: ListAction): RecyclerView.Adapter<NotesListAdapter.NoteViewHolder>() {
+class NotesListAdapter(private var notesList: List<Note>, private val action: ListAction) :
+    RecyclerView.Adapter<NotesListAdapter.NoteViewHolder>() {
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
         val binding = SingleNoteBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return NoteViewHolder(binding)
@@ -34,12 +35,13 @@ class NotesListAdapter(private var notesList: List<Note>, private val action: Li
         diffResult.dispatchUpdatesTo(this)
     }
 
-    inner class NoteViewHolder(private val binding: SingleNoteBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class NoteViewHolder(private val binding: SingleNoteBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(note: Note) {
             with(binding) {
                 this.note = note
 
-                binding.layout.setOnClickListener { action.onClick(note.id) }
+                this.cardView.setOnClickListener { action.onClick(note.id) }
             }
         }
     }

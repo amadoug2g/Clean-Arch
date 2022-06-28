@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="note"
             type="com.playgroundagc.core.data.Note" />
@@ -9,16 +10,17 @@
 
     <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="@dimen/layout_height"
+        app:cardCornerRadius="5dp"
         app:cardElevation="2dp"
-        app:cardUseCompatPadding="true"
-        app:cardCornerRadius="5dp">
+        app:cardUseCompatPadding="true">
 
         <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_margin="@dimen/standard_margin_8"
             android:orientation="vertical">
 
             <TextView

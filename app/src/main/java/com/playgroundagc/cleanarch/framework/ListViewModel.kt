@@ -1,4 +1,4 @@
-package com.playgroundagc.cleanarch.framework.db
+package com.playgroundagc.cleanarch.framework
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
